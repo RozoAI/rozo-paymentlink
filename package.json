@@ -15,7 +15,7 @@
 		"@react-router/node": "^7.6.3",
 		"@react-router/serve": "^7.6.3",
 		"@rozoai/intent-common": "^0.0.1",
-		"@rozoai/intent-pay": "^0.0.11",
+		"@rozoai/intent-pay": "^0.0.12",
 		"@tanstack/react-query": "^5.81.5",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",

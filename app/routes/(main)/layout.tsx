@@ -13,7 +13,7 @@ export function meta() {
 export default function Layout() {
 	return (
 		<Providers>
-			<main className="flex min-h-screen flex-col gap-4 md:items-center md:justify-center md:py-4">
+			<main className="flex h-full flex-col gap-4 md:min-h-screen md:items-center md:justify-center md:py-4">
 				<Outlet />
 				<Footer />
 				<FabActions />
