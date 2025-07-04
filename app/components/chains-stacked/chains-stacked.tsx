@@ -6,7 +6,7 @@ import {
 	Polygon,
 	Solana,
 	USDC,
-} from "./chains";
+} from "../icons/chains";
 
 interface ChainLogo {
 	type: string;

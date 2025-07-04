@@ -5,7 +5,7 @@ import { Providers } from "~/lib/providers";
 
 export function meta() {
 	return [
-		{ title: "Rozo Pay" },
+		{ title: "Rozo | One Tap to Pay" },
 		{ name: "description", content: "Increase the GDP of Crypto" },
 	];
 }
@@ -15,7 +15,7 @@ export default function Layout() {
 		<Providers>
 			<main className="flex h-full flex-col gap-4 md:min-h-screen md:items-center md:justify-center md:py-4">
 				<Outlet />
-				<Footer />
+				<Footer className="py-8" />
 				<FabActions />
 			</main>
 		</Providers>

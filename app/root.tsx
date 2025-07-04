@@ -70,7 +70,7 @@ export default function App() {
 				<Meta />
 				<Links />
 			</head>
-			<body className="overscroll-none bg-background antialiased">
+			<body className="h-svh overscroll-none bg-card antialiased md:h-auto md:bg-background">
 				<Outlet />
 				<IntercomInitializer appId={data.ENV.INTERCOM_APP_ID as string} />
 				<ScrollRestoration />

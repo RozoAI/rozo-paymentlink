@@ -24,8 +24,8 @@ importers:
         specifier: ^0.0.1
         version: 0.0.1(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)
       '@rozoai/intent-pay':
-        specifier: ^0.0.12
-        version: 0.0.12(@babel/core@7.28.0)(@emotion/is-prop-valid@1.3.1)(@tanstack/react-query@5.81.5(react@19.1.0))(bs58@5.0.0)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react-native@0.80.1(@babel/core@7.28.0)(@types/react@19.1.8)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10))(react@19.1.0)(rollup@4.44.1)(tslib@2.8.1)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.71))(wagmi@2.15.6(@react-native-async-storage/async-storage@1.24.0(react-native@0.80.1(@babel/core@7.28.0)(@types/react@19.1.8)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10)))(@tanstack/query-core@5.81.5)(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react@19.1.8)(bufferutil@4.0.9)(encoding@0.1.13)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.71))(zod@3.25.71))
+        specifier: ^0.0.13
+        version: 0.0.13(@babel/core@7.28.0)(@emotion/is-prop-valid@1.3.1)(@tanstack/react-query@5.81.5(react@19.1.0))(bs58@5.0.0)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react-native@0.80.1(@babel/core@7.28.0)(@types/react@19.1.8)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10))(react@19.1.0)(rollup@4.44.1)(tslib@2.8.1)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.71))(wagmi@2.15.6(@react-native-async-storage/async-storage@1.24.0(react-native@0.80.1(@babel/core@7.28.0)(@types/react@19.1.8)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10)))(@tanstack/query-core@5.81.5)(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react@19.1.8)(bufferutil@4.0.9)(encoding@0.1.13)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.71))(zod@3.25.71))
       '@tanstack/react-query':
         specifier: ^5.81.5
         version: 5.81.5(react@19.1.0)
@@ -1747,8 +1747,8 @@ packages:
   '@rozoai/intent-common@0.0.1':
     resolution: {integrity: sha512-5eV7kGK7HNfZv6soeiSjG3tW51CdoH+ePBmjJjTo5qxGZg4fdEuMQh3c3lV7yYf2Vdxl9GZm7OpEdmUNWaPpQg==}
 
-  '@rozoai/intent-pay@0.0.12':
-    resolution: {integrity: sha512-wkjGR9CeaE3tf2bEOMmREBMRvl+Fr5qR7DvCJHHBOF0ECp4sqvAUEKQcJZbvpIHtL467iD8tcNO7gDsM78+RoQ==}
+  '@rozoai/intent-pay@0.0.13':
+    resolution: {integrity: sha512-Mp1JE3WqquBvbPUKDAlNg8SyNHGTZW+mUrdVzTgwHPdChUJRkDDdtvugqhr4qqvNAbazyD3efsEMmpCnj5MiRQ==}
     engines: {node: '>=12.4'}
     peerDependencies:
       '@tanstack/react-query': '>=5.0.0'
@@ -6997,7 +6997,7 @@ snapshots:
       - typescript
       - utf-8-validate
 
-  '@rozoai/intent-pay@0.0.12(@babel/core@7.28.0)(@emotion/is-prop-valid@1.3.1)(@tanstack/react-query@5.81.5(react@19.1.0))(bs58@5.0.0)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react-native@0.80.1(@babel/core@7.28.0)(@types/react@19.1.8)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10))(react@19.1.0)(rollup@4.44.1)(tslib@2.8.1)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.71))(wagmi@2.15.6(@react-native-async-storage/async-storage@1.24.0(react-native@0.80.1(@babel/core@7.28.0)(@types/react@19.1.8)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10)))(@tanstack/query-core@5.81.5)(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react@19.1.8)(bufferutil@4.0.9)(encoding@0.1.13)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.71))(zod@3.25.71))':
+  '@rozoai/intent-pay@0.0.13(@babel/core@7.28.0)(@emotion/is-prop-valid@1.3.1)(@tanstack/react-query@5.81.5(react@19.1.0))(bs58@5.0.0)(bufferutil@4.0.9)(react-dom@19.1.0(react@19.1.0))(react-is@18.3.1)(react-native@0.80.1(@babel/core@7.28.0)(@types/react@19.1.8)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10))(react@19.1.0)(rollup@4.44.1)(tslib@2.8.1)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.71))(wagmi@2.15.6(@react-native-async-storage/async-storage@1.24.0(react-native@0.80.1(@babel/core@7.28.0)(@types/react@19.1.8)(bufferutil@4.0.9)(react@19.1.0)(utf-8-validate@5.0.10)))(@tanstack/query-core@5.81.5)(@tanstack/react-query@5.81.5(react@19.1.0))(@types/react@19.1.8)(bufferutil@4.0.9)(encoding@0.1.13)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.31.6(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.25.71))(zod@3.25.71))':
     dependencies:
       '@rollup/plugin-typescript': 12.1.4(rollup@4.44.1)(tslib@2.8.1)(typescript@5.8.3)
       '@rozoai/intent-common': 0.0.1(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)

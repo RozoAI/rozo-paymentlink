@@ -7,9 +7,9 @@ export default function Home() {
 	const [theme] = useTheme();
 	return (
 		<BoxedCard>
-			<CardContent className="flex flex-1 flex-col items-center justify-center">
+			<CardContent className="flex flex-1 flex-col items-center justify-center pt-6 md:pt-0">
 				<div className="mb-2 flex flex-col items-center justify-center gap-1">
-					<Avatar className="size-16 rounded-none">
+					<Avatar className="size-8 rounded-none">
 						<AvatarImage
 							src={theme === Theme.DARK ? "/logo-white.png" : "/logo.png"}
 							alt="Rozo Pay"
