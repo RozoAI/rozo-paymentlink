@@ -1,7 +1,7 @@
 export interface EIP681Transfer {
 	protocol: "ethereum" | "solana" | "stellar";
-	contractAddress: string;
-	recipient: string;
+	contractAddress: `0x${string}`;
+	recipient: `0x${string}`;
 	chainId?: number;
 	functionName?: string;
 	amount?: string;

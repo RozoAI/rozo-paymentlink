@@ -5,7 +5,7 @@ import type {
 import { RozoPayButton } from "@rozoai/intent-pay";
 import { type IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
 import { Loader2, ScanLine, Wallet } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { getAddress } from "viem";
@@ -36,12 +36,6 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 	const [_qrCodeData, setQrCodeData] = useState<QRCodeData | null>(null);
 
 	const navigate = useNavigate();
-
-	useEffect(() => {
-		if (payment) {
-			console.log("Payment:", payment);
-		}
-	}, [payment]);
 
 	const handleScan = (detectedCodes: IDetectedBarcode[]) => {
 		if (detectedCodes.length === 0) return;
@@ -134,12 +128,12 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 					key={`${parsedTransfer.chainId}-${parsedTransfer.recipient}-${parsedTransfer.contractAddress}`}
 					defaultOpen
 					appId={appId}
-					toAddress={getAddress(parsedTransfer.recipient)}
+					toAddress={parsedTransfer.recipient}
 					toChain={Number(parsedTransfer.chainId)}
 					{...(parsedTransfer.amount && {
 						toUnits: parsedTransfer.amount,
 					})}
-					toToken={getAddress(parsedTransfer.contractAddress)}
+					toToken={parsedTransfer.contractAddress}
 					onPaymentStarted={() => {
 						setIsLoading(true);
 					}}

@@ -1,7 +1,6 @@
 import { getAddress } from "viem";
 import type { QRCodeData } from "./types";
-
-export const DEFAULT_BASE_CHAIN_ID = 8543;
+import { baseUSDC } from "@rozoai/intent-common";
 
 export function parseEthereum(input: string): QRCodeData | null {
 	const transferRegex =
@@ -24,7 +23,7 @@ export function parseEthereum(input: string): QRCodeData | null {
 				contractAddress: getAddress(contractAddress),
 				chainId: chainIdStr
 					? Number.parseInt(chainIdStr, 10)
-					: DEFAULT_BASE_CHAIN_ID,
+					: baseUSDC.chainId,
 				functionName: functionName.toLowerCase(),
 				recipient: getAddress(recipient),
 				amount,
@@ -38,10 +37,8 @@ export function parseEthereum(input: string): QRCodeData | null {
 			type: "address",
 			transfer: {
 				protocol: "ethereum",
-				contractAddress: getAddress(
-					"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913", // USDC BASE Contract Address
-				),
-				chainId: DEFAULT_BASE_CHAIN_ID, // BASE NETWORK
+				contractAddress: baseUSDC.token as `0x${string}`, // USDC BASE Contract Address
+				chainId: baseUSDC.chainId, // BASE NETWORK
 				recipient: getAddress(input),
 			},
 			message:
