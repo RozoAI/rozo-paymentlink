@@ -6,6 +6,7 @@ import { RozoPayButton } from "@rozoai/intent-pay";
 import { type IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
 import { Loader2, ScanLine, Wallet } from "lucide-react";
 import { useEffect, useState } from "react";
+import { toast } from "sonner";
 import { getAddress } from "viem";
 import { Button } from "~/components/ui/button";
 import {
@@ -15,87 +16,11 @@ import {
 	DrawerTitle,
 	DrawerTrigger,
 } from "~/components/ui/drawer";
-
-type EIP681Transfer = {
-	protocol: string;
-	contractAddress: string;
-	chainId?: number;
-	functionName: string;
-	recipient: string;
-	amount?: string;
-};
-
-type QRCodeType = "website" | "eip681" | "address" | "unknown";
-
-type QRCodeData = {
-	type: QRCodeType;
-	website?: string;
-	transfer?: EIP681Transfer;
-	address?: string;
-	chainId?: number;
-};
+import { parseQRCode } from "~/lib/deeplink";
+import type { EIP681Transfer, QRCodeData } from "~/lib/deeplink/types";
 
 interface ScanQRButtonProps {
 	appId: string;
-}
-
-function parseEIP681Transfer(uri: string): EIP681Transfer | null {
-	const regex = /^ethereum:(0x[a-fA-F0-9]{40})(?:@(\d+))?\/(\w+)\?(.+)$/;
-	const match = uri.match(regex);
-
-	if (!match) return null;
-
-	const [, contractAddress, chainIdStr, functionName, queryString] = match;
-	if (functionName.toLowerCase() !== "transfer") return null;
-
-	const params = new URLSearchParams(queryString);
-	const recipient = params.get("address");
-	const amount = params.get("uint256") || undefined;
-
-	if (!recipient) return null;
-
-	return {
-		protocol: "ethereum",
-		contractAddress: contractAddress.toLowerCase(),
-		chainId: chainIdStr ? Number.parseInt(chainIdStr, 10) : 8543, // DEFAULT CHAIN ID FOR BASE
-		functionName: functionName.toLowerCase(),
-		recipient: recipient.toLowerCase(),
-		amount,
-	};
-}
-
-function parseQRCode(qrCode: string): QRCodeData {
-	// Check if it's a website URL
-	if (qrCode.startsWith("http://") || qrCode.startsWith("https://")) {
-		return {
-			type: "website",
-			website: qrCode,
-		};
-	}
-
-	// Check if it's an EIP681 transfer
-	const transfer = parseEIP681Transfer(qrCode);
-	if (transfer) {
-		return {
-			type: "eip681",
-			transfer,
-		};
-	}
-
-	// Check if it's a plain Ethereum address
-	const addressRegex = /^0x[a-fA-F0-9]{40}$/;
-	if (addressRegex.test(qrCode)) {
-		return {
-			type: "address",
-			address: qrCode.toLowerCase(),
-			chainId: 8543, // Default to Base chain
-		};
-	}
-
-	// Unknown type
-	return {
-		type: "unknown",
-	};
 }
 
 export function ScanQRButton({ appId }: ScanQRButtonProps) {
@@ -116,40 +41,50 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 	}, [payment]);
 
 	const handleScan = (detectedCodes: IDetectedBarcode[]) => {
-		if (detectedCodes.length > 0) {
-			const result = detectedCodes[0].rawValue;
-			setQrCode(result);
-			console.log("QR Code scanned:", result);
+		if (detectedCodes.length === 0) return;
 
-			// Parse the QR code
-			const parsed = parseQRCode(result);
-			setQrCodeData(parsed);
+		const result = detectedCodes[0].rawValue;
+		if (!result) return;
 
-			if (parsed.type === "website") {
-				// Open website in new tab
+		console.log("QR Code scanned:", result);
+		setQrCode(result);
+
+		const parsed = parseQRCode(result);
+		setQrCodeData(parsed);
+		setIsScannerOpen(false); // always close after parsing
+
+		switch (parsed.type) {
+			case "website": {
 				window.open(parsed.website, "_blank");
-				setIsScannerOpen(false);
-			} else if (parsed.type === "eip681") {
-				// Handle EIP681 transfer
-				setParsedTransfer(parsed.transfer!);
-				console.log("Parsed EIP681 transfer:", parsed.transfer);
-			} else if (parsed.type === "address") {
-				// Handle plain address - create a transfer object
-				const transfer: EIP681Transfer = {
-					protocol: "ethereum",
-					contractAddress: "0x0000000000000000000000000000000000000000", // ETH
-					chainId: parsed.chainId,
-					functionName: "transfer",
-					recipient: parsed.address!,
-					// No amount - user will enter it
-				};
-				setParsedTransfer(transfer);
-				console.log("Parsed address:", parsed.address);
-			} else {
-				console.log("Unknown QR code type");
+				break;
 			}
 
-			setIsScannerOpen(false);
+			case "eip681": {
+				if (parsed.transfer) {
+					setParsedTransfer(parsed.transfer);
+				}
+				break;
+			}
+
+			case "address": {
+				if (parsed.address && parsed.transfer) {
+					setParsedTransfer(parsed.transfer);
+					if (parsed.message) {
+						toast.info(parsed.message);
+					}
+				}
+				break;
+			}
+
+			case "solana":
+			case "stellar": {
+				toast.info(parsed.message || `${parsed.type} support coming soon.`);
+				break;
+			}
+			default: {
+				toast.error("Unknown QR code type");
+				break;
+			}
 		}
 	};
 
@@ -157,6 +92,10 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 		setParsedTransfer(null);
 		setQrCodeData(null);
 		setIsScannerOpen(false);
+		setPayment(null);
+		setIsPaymentOpen(false);
+		setIsScannerOpen(false);
+		setQrCode(null);
 	};
 
 	return (
