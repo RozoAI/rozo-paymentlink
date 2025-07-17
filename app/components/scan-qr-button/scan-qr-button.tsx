@@ -163,9 +163,9 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 		<>
 			{!parsedTransfer && (
 				<Drawer open={isScannerOpen} onOpenChange={setIsScannerOpen}>
-					<DrawerTrigger asChild>
-						<Button className="w-full" size={"lg"}>
-							<ScanLine />
+					<DrawerTrigger asChild className="m-auto w-full">
+						<Button className="py-8 text-lg">
+							<ScanLine className="size-7" />
 							Scan QR Code
 						</Button>
 					</DrawerTrigger>
@@ -221,10 +221,9 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 					}}
 				>
 					{({ show }) => (
-						<div className="flex w-full flex-col gap-2">
+						<div className="m-auto flex w-full flex-col gap-2">
 							<Button
-								variant="default"
-								className="w-full"
+								className="w-full py-8 text-lg"
 								size={"lg"}
 								onClick={show}
 								disabled={isLoading}
@@ -241,7 +240,7 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 
 							<Button
 								variant="outline"
-								className="w-full"
+								className="w-full py-8 text-lg"
 								size={"lg"}
 								onClick={handleCancelPayment}
 								disabled={isLoading}

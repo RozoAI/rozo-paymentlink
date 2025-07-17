@@ -1,8 +1,7 @@
 import { data, useLoaderData } from "react-router";
-import { Theme, useTheme } from "remix-themes";
+import { useTheme } from "remix-themes";
 import BoxedCard from "~/components/boxed-card/boxed-card";
 import { ScanQRButton } from "~/components/scan-qr-button/scan-qr-button";
-import { Avatar, AvatarImage } from "~/components/ui/avatar";
 import { CardContent } from "~/components/ui/card";
 import { env } from "~/lib/env.server";
 
@@ -26,12 +25,12 @@ export async function loader() {
 
 export default function Home() {
 	const loaderData = useLoaderData<typeof loader>() as LoaderData;
-	const [theme] = useTheme();
+	const [_theme] = useTheme();
 
 	return (
-		<BoxedCard>
-			<CardContent className="flex flex-1 flex-col items-center justify-center pt-6 md:pt-0">
-				<div className="mb-2 flex flex-col items-center justify-center gap-1">
+		<BoxedCard className="flex-1">
+			<CardContent className="m-auto w-full">
+				{/* <div className="mb-auto flex flex-col items-center justify-center gap-1">
 					<Avatar className="size-8 rounded-none">
 						<AvatarImage
 							src={theme === Theme.DARK ? "/logo-white.png" : "/logo.png"}
@@ -39,14 +38,14 @@ export default function Home() {
 						/>
 					</Avatar>
 					<span className="font-bold text-foreground text-xl ">Rozo Pay</span>
-				</div>
+				</div> */}
 
-				<p className="my-4 text-center text-lg">
+				{/* <p className="my-4 text-center text-lg">
 					Experience effortless, secure crypto payments with Rozo Pay. Our
 					platform makes digital transactions fast, reliable, and accessible to
 					everyone. Start accepting and sending crypto with confidence—no
 					technical expertise required.
-				</p>
+				</p> */}
 
 				{loaderData.appId && <ScanQRButton appId={loaderData.appId} />}
 			</CardContent>
