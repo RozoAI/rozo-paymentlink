@@ -52,7 +52,7 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 		const parsed = parseQRCode(result);
 		setQrCodeData(parsed);
 		setIsScannerOpen(false); // always close after parsing
-
+		console.log("Parsed:", parsed);
 		switch (parsed.type) {
 			case "website": {
 				window.open(parsed.website, "_blank");
@@ -67,8 +67,9 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 			}
 
 			case "address": {
-				if (parsed.address && parsed.transfer) {
+				if (parsed.transfer) {
 					setParsedTransfer(parsed.transfer);
+
 					if (parsed.message) {
 						toast.info(parsed.message);
 					}
