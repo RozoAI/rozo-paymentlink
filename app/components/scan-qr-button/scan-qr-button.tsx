@@ -49,13 +49,12 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 		const result = detectedCodes[0].rawValue;
 		if (!result) return;
 
-		console.log("QR Code scanned:", result);
 		setQrCode(result);
 
 		const parsed = parseQRCode(result);
 		setQrCodeData(parsed);
 		setIsScannerOpen(false); // always close after parsing
-		console.log("Parsed:", parsed);
+
 		switch (parsed.type) {
 			case "website": {
 				window.open(parsed.website, "_blank");
