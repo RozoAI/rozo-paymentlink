@@ -1,6 +1,7 @@
 import { Outlet } from "react-router";
 import FabActions from "~/components/fab-actions/fab-actions";
 import Footer from "~/components/footer/footer";
+import { Toaster } from "~/components/ui/sonner";
 import { Providers } from "~/lib/providers";
 
 export function meta() {
@@ -17,6 +18,7 @@ export default function Layout() {
 				<Outlet />
 				<Footer className="mt-auto py-8" />
 				<FabActions />
+				<Toaster position="top-center" />
 			</main>
 		</Providers>
 	);
