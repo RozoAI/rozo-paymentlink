@@ -6,6 +6,7 @@ import { RozoPayButton } from "@rozoai/intent-pay";
 import { type IDetectedBarcode, Scanner } from "@yudiel/react-qr-scanner";
 import { Loader2, ScanLine, Wallet } from "lucide-react";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { getAddress } from "viem";
 import { Button } from "~/components/ui/button";
@@ -31,8 +32,10 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 	);
 	const [isLoading, setIsLoading] = useState(false);
 	const [payment, setPayment] = useState<RozoPayOrderView | null>(null);
-	const [_isPaymentOpen, setIsPaymentOpen] = useState(false);
+	const [_isPaymentOpen, _setIsPaymentOpen] = useState(false);
 	const [_qrCodeData, setQrCodeData] = useState<QRCodeData | null>(null);
+
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (payment) {
@@ -90,13 +93,7 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 	};
 
 	const handleCancelPayment = () => {
-		setParsedTransfer(null);
-		setQrCodeData(null);
-		setIsScannerOpen(false);
-		setPayment(null);
-		setIsPaymentOpen(false);
-		setIsScannerOpen(false);
-		setQrCode(null);
+		navigate(0);
 	};
 
 	return (
@@ -133,10 +130,10 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 				</Drawer>
 			)}
 
-			{/* Display parsed transfer information */}
 			{parsedTransfer && (
 				<RozoPayButton.Custom
-					defaultOpen={!!parsedTransfer}
+					key={`${parsedTransfer.chainId}-${parsedTransfer.recipient}-${parsedTransfer.contractAddress}`}
+					defaultOpen
 					appId={appId}
 					toAddress={getAddress(parsedTransfer.recipient)}
 					toChain={Number(parsedTransfer.chainId)}
@@ -144,9 +141,6 @@ export function ScanQRButton({ appId }: ScanQRButtonProps) {
 						toUnits: parsedTransfer.amount,
 					})}
 					toToken={getAddress(parsedTransfer.contractAddress)}
-					onOpen={() => {
-						setIsPaymentOpen(true);
-					}}
 					onPaymentStarted={() => {
 						setIsLoading(true);
 					}}
