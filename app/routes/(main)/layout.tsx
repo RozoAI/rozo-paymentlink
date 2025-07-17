@@ -15,7 +15,7 @@ export default function Layout() {
 		<Providers>
 			<main className="flex h-full flex-col gap-4 md:min-h-screen md:items-center md:justify-center md:py-4">
 				<Outlet />
-				<Footer className="py-8" />
+				<Footer className="mt-auto py-8" />
 				<FabActions />
 			</main>
 		</Providers>

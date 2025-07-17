@@ -11,12 +11,14 @@
 	},
 	"dependencies": {
 		"@radix-ui/react-avatar": "^1.1.10",
+		"@radix-ui/react-dialog": "^1.1.14",
 		"@radix-ui/react-slot": "^1.2.3",
 		"@react-router/node": "^7.6.3",
 		"@react-router/serve": "^7.6.3",
 		"@rozoai/intent-common": "^0.0.2",
 		"@rozoai/intent-pay": "^0.0.14",
 		"@tanstack/react-query": "^5.81.5",
+		"@yudiel/react-qr-scanner": "^2.3.1",
 		"class-variance-authority": "^0.7.1",
 		"clsx": "^2.1.1",
 		"isbot": "^5.1.28",
@@ -27,6 +29,7 @@
 		"react-router": "^7.6.3",
 		"remix-themes": "^2.0.4",
 		"tailwind-merge": "^3.3.1",
+		"vaul": "^1.1.2",
 		"viem": "^2.31.6",
 		"wagmi": "^2.15.6",
 		"zod": "^3.25.71"
